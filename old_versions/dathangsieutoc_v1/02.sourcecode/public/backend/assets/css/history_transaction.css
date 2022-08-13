@@ -1,0 +1,56 @@
+.bg-maroon {
+    background-color: #d81b60!important;
+    color: #fff!important;
+}
+
+.column-center {
+    margin: 0 8px 0 8px;
+}
+
+.bg-gray {
+    color: #000;
+    background-color: #d2d6de!important;
+}
+
+.color-palette label{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.color-palette b{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.vnd-unit {
+    color: red;
+}
+
+.search {
+    padding-top: 10px;
+}
+
+.input-group-text {
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+
+.search-form .col-3 {
+    width: 25%;
+}
+
+.bs-bars {
+    float: none !important;
+}
+
+body {
+    font-size: 13px;
+}
+
+#grid tr th:last-child {
+   width: 25% !important;
+}

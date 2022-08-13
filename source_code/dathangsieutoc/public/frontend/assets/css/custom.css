@@ -1,0 +1,147 @@
+.header-area {
+    background-color: #142440;
+}
+
+.catagory-item {
+    margin-top: 0px;
+}
+
+body[name='home'] .header-area {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+body[name='register'] .header-area {
+    position: unset !important;
+    max-height: 90px;
+}
+
+body[name='register'] .header-area .logo {
+    margin-top: 10px;
+}
+.blog-img .blog-s2 img {
+    width: 700px;
+    height: 450px;
+}
+
+.pagination .page-item {
+    padding: 4px;
+}
+
+.posts .post .img-holder img {
+    width: 75px;
+    height: 75px;
+}
+
+.blog-page-area .blog-item {
+    padding-bottom: 18px;
+}
+
+.blog-left-bar .author-box {
+    margin: 50px 0 30px;
+}
+
+.blog-left-bar .tag-share {
+    margin: 50px 0 50px;
+}
+
+.blog-left-bar .more-posts .previous-post {
+    float: left;
+}
+
+.blog-left-bar .more-posts .next-post {
+    float: right;
+}
+
+.Recent-News-area .resent-sub a p {
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+/*.blog-area.blog-style-2 .blog-content {*/
+/*    height: 122px;*/
+/*}*/
+
+.blog-img img {
+    height: 406px;
+}
+
+.instagram ul {
+    width: 100%;
+}
+
+.instagram .row {
+    padding-bottom: 13px;
+    padding-left: 10px;
+}
+
+.instagram .zalo {
+    float: left;
+    color: white;
+}
+
+.instagram .zalo img {
+    width: 45px;
+}
+
+.instagram .zalo-info {
+    max-width: 100% !important;
+}
+
+.Recent-News-area h3 {
+    padding-bottom: 20px;
+}
+
+.blog-content2 p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.next-clock {
+    color: #34ccff !important;
+}
+
+.custom-fa-clock {
+    font: normal normal normal 16px/1.6 FontAwesome !important;
+}
+
+.Recent-News-area span i {
+    padding-right: 5px;
+}
+
+.page-item.active .page-link {
+    background-color: #34ccff;
+    border-color: #34ccff;
+}
+
+.page-link {
+    color: #34ccff;
+}
+
+.testimonial-img img {
+    width: 110px !important;
+    height: 120px !important;
+}
+
+.main-menu .submenu li a {
+    text-transform: none;
+    font-size: 16px;
+}
+
+.main-menu .submenu {
+    padding: 10px 0px;
+    width: 300px;
+}
+
+.team-img {
+    height: 200px;
+}
+
+.wrapper-page {
+    margin: 2% auto !important;
+}
+/*.posts .details p {*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    max-width: 200px;*/
+/*}*/

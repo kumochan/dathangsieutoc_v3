@@ -1,0 +1,12 @@
+Connnection 
+
+You can use these database connection details, for example, when you are asked to specify ones during installation of a web app.
+
+Host
+localhost:3306
+Database name
+dat10520_dathangsieutoc
+User name
+dat10520_root
+Password
+******

@@ -1,0 +1,152 @@
+.info {
+    box-shadow: 0px 1px 9px -3px;
+    float: left;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    padding: 2% 4%;
+    background: white;
+}
+
+.info img {
+    float: left;
+    padding-right: 10px;
+}
+.box-info {
+    padding-left: 118px;
+}
+
+.info ul li b.color-blue {
+    color: blue;
+    font-size: 12px;
+}
+.info ul, ol {
+    list-style: none;
+}
+
+.info ul li {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 5px 0px;
+}
+
+.info ul li label {
+    width: 200px;
+    text-align: right;
+}
+
+.info ul li b.tbe-rate {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.info ul li b {
+    color: rgb(255, 68, 0);
+}
+
+/** nut dat hang */
+.dat-hang {
+    margin-bottom: 15px;
+    float: left;
+    z-index: 9999999;
+    text-align: center;
+    position: relative;
+    margin-top: 15px;
+    padding: 12px 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+}
+
+.dat-hang .container {
+    overflow: hidden;
+    margin: auto;
+}
+
+.dat-hang p.warning {
+    width: 100%;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 8px;
+}
+
+
+.dat-hang button {
+    padding-right: 50px;
+    padding-left: 55px;
+    z-index: 9999999;
+    width: auto;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    height: 38px;
+    line-height: 38px;
+    font-size: 13px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 5px auto;
+    background: url(https://nguonhang24h.vn/images/shopping-cart.png) 12px 4px no-repeat rgb(255, 68, 0);
+    border-radius: 3px;
+}
+
+.dat-hang button {
+    margin-top: 10px;
+    position: relative;
+}
+
+.button-important {
+    font-weight: 700;
+    white-space: nowrap;
+    color: rgb(255, 255, 255) !important;
+    border-color: rgb(236, 50, 0);
+}
+
+.button-large {
+    height: 40px;
+    line-height: 39px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0px 60px;
+}
+
+.button {
+    vertical-align: middle;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    height: 24px;
+    line-height: 23px;
+    color: rgb(51, 51, 51) !important;
+    padding: 0px 12px;
+}
+/** end nut dat hang */
+
+/*body {
+  background: url('https://media.giphy.com/media/3o7WTDJQVuYwhhuLhC/giphy.gif') !important;
+}
+ 
+#masthead,
+#primary {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  background-color: #fff;
+  padding: 20px !important;
+}
+#masthead {
+  background: none;
+}
+#masthead img, #primary img {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+.form-group{
+	color: red !important;
+}*/

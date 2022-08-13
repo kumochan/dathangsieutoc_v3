@@ -1,0 +1,326 @@
+@extends('backend.layout')
+@section('title', 'Chi Tiết Đơn Hàng')
+@section('css')
+    <link rel="stylesheet" href="{{ asset("backend/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/plugins/switchery/css/switchery.min.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/plugins/multiselect/css/multi-select.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/plugins/select2/css/select2.min.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/plugins/bootstrap-select/css/bootstrap-select.min.css") }}"/>
+    <link rel="stylesheet"
+          href="{{ asset('backend/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/plugins/jstree/style.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/assets/css/bootstrap.min.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/assets/css/icons.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/assets/css/style.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/assets/css/custom.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("backend/assets/css/order_detail.css") }}">
+    <script src="{{ asset("backend/assets/js/modernizr.min.js") }}"></script>
+@endsection
+
+@section('content')
+    <input type="hidden" value="{{$orders[0]->status_id}}" class="status_id">
+    <input type="hidden" value="{{$orders[0]->status_name}}" class="status_name">
+    <div class="container-fluid">
+        <div class="box-step-order">
+            <div class="stepwizard">
+                <div class="stepwizard-row">
+                    @foreach($status_bar as $item)
+                        @if(!empty($item['currentUrl']))
+                            <div class="stepwizard-step">
+                                @if(isset($item['active']))
+                                    <span class="badge bg-aqua bg-blue-active ">{{$item['currentUrl']}}</span>
+                                @else
+                                    <span class="badge bg-aqua">{{$item['currentUrl']}}</span>
+                                @endif
+                                <p>{{$item['name']}}</p>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card-box col-8 col-md-7 col-sm-12 custom_card_box">
+                <div class="mb-1">
+                    <i class="fa fa-eye">Thông tin đơn hàng</i>
+                </div>
+                <table class="table table-bordered table-summary table-hover" id="table-order">
+                    <tbody>
+                    <tr>
+                        <td style="border-bottom:2px solid #dddddd">
+                            <div class="border_bottom">
+                                <span class="pull_left">Mã đơn hàng:</span>
+                                <b class="pull_right">ĐHST-{{$orders[0]->id}}</b>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Tên khách hàng:</span>
+                                <b class="pull_right">{{$orders[0]->customer_name}} ({{$orders[0]->username}})</b>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Nhân viên quản lý:</span>
+                                <div class="pull_right" style="font-size: 14px">
+                                    @if (!empty($array_user))
+                                        @foreach($array_user as $user)
+                                            <label class="label label-success">{{$user->name}}</label>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </td>
+                        <td style="border-bottom:2px solid #dddddd">
+                            <div class="border_bottom">
+                                <span class="pull_left exchange_rate">Tỷ giá áp dụng:</span>
+                                <span class="pull_right"><b>{{$exchange_rate}}<em>đ</em></b></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Số lượng sản phẩm:</span>
+                                <span class="pull_right"><b class="number_counted">{{$orders[0]->number_counted}}</b>/<b
+                                            class="number_order">{{$orders[0]->number_order}}</b></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Cân nặng:</span>
+                                <span class="pull_right"><b>{{$orders[0]->weight}}</b>/<b
+                                            class="money_type">{{$orders[0]->weight_fee}}</b></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="background: #f5f5f5">
+                        <td width="50%">
+                            <div class="text-center">TẤT TOÁN ĐƠN HÀNG</div>
+                            <div class="border_bottom">
+                                <span class="pull_left">(1) Tiền hàng: {{$orders[0]->price_cn}} ¥</span>
+                                <span class="pull_right"><b
+                                            class="money_type">{{$orders[0]->price_vn}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">(2) Phí ship nội địa TQ: {{$orders[0]->ship_cn}} ¥</span>
+                                <span class="pull_right"><b
+                                            class="money_type">{{$orders[0]->ship_cn}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">(3) Phí mua hàng (3%) :</span>
+                                <span class="pull_right"><b
+                                            class="money_type">{{$orders[0]->purchase_fee}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">(4) Phí phát sinh:</span>
+                                <span class="pull_right"><b
+                                            class="money_type">{{$orders[0]->additional_fee}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">(5) Tổng tiền cân nặng:</span>
+                                <span class="pull_right"><b class="money_type">{{$orders[0]->weight_fee}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">(6) Kiểm đếm:</span>
+                                <span class="pull_right"><b
+                                            class="money_type">{{$orders[0]->counting_fee}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">(7) Đóng gỗ:</span>
+                                <span class="pull_right"><b class="money_type">{{$orders[0]->packing_fee}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom last">
+                                <span class="pull_left">(8) Phí ship VN:</span>
+                                <span class="pull_right"><b
+                                            class="money_type">{{$orders[0]->ship_vn}}</b><em>đ</em></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">TIỀN HÀNG
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Tổng phí:</span>
+                                <span class="pull_right"><b class="money_type total_price_vn">{{$orders[0]->total_price_vn}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Đã thanh toán:</span>
+                                <span class="pull_right"><b class="money_type">{{$orders[0]->prepayment}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Còn thiếu:</span>
+                                <span class="pull_right"><b class="money_type">{{$orders[0]->arrears_fee}}</b><em>đ</em></span>
+                            </div>
+                            <div class="border_bottom">
+                                <span class="pull_left">Ghi chú:</span>
+                                <span class="pull_right">{{$orders[0]->note}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4 col-md-5">
+                <div class="card-box">
+                    <div class="mb-1 upscepter text-center">
+                      Chuyển đổi trạng thái
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            @foreach($status_bar as $key => $item)
+                                @if(isset($item['active']))
+                                    @if($key - 1 != 0)
+                                        <a class="btn btn-danger pull-left per_status" href="javascript:;" data-toggle="modal" data-target=".modal-update" data-status-id = "{{$orders[0]->status_id - 1}}" data-orders-id = "{{$orders[0]->order_id }}">Trước đó ({{$status_bar[$key - 1]['name']}})</a>
+                                    @endif
+                                    @if($key + 1 < count($status_bar))
+                                        <a class="btn btn-success pull-right next_status" href="javascript:;" data-toggle="modal" data-target=".modal-update" data-status-id = "{{$orders[0]->status_id + 1}}" data-orders-id = "{{$orders[0]->order_id }}">Kế tiếp ({{$status_bar[$key + 1]['name']}})</a>
+                                    @endif
+                                @endif
+                            @endforeach
+                            
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="clear-fix"></div>
+                    <div class="text-center pb-3">TẤT TOÁN ĐƠN HÀNG</div>
+                    <form method="post" class="form-add" action="{{ action('Backend\OrderDetailController@updateDetail') }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="orders_id" value="{{$orders[0]->order_id}}">
+                    <div class="row">
+                        <div class="col-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-5 pull-left" for="">Phí ship nội địa TQ:</label>
+                                <input class="col-7 form-control pull-right" type="number" min = "0" value="{{$orders[0]->ship_cn}}" name="ship_cn"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-5 pull-left" for="">Phí mua hàng:</label>
+                                <input class="col-7 form-control pull-right" type="number"  min = "0" value="{{$orders[0]->purchase_fee}}" name="purchase_fee"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-5 pull-left" for="">Phí phát sinh:</label>
+                                <input class="col-7 form-control pull-right" type="number"  min = "0" value="{{$orders[0]->additional_fee}}" name="additional_fee"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-5 pull-left" for="">Tổng tiền cân nặng:</label>
+                                <input class="col-7 form-control pull-right" type="number"  min = "0" value="{{$orders[0]->weight_fee}}" name="weight_fee"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-5 pull-left" for="">Kiểm đếm:</label>
+                                <input class="col-7 form-control pull-right" type="number" min = "0"  value="{{$orders[0]->counting_fee}}" name="counting_fee"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-5 pull-left" for="">Đóng gỗ:</label>
+                                <input class="col-7 form-control pull-right" type="number"  min = "0" value="{{$orders[0]->packing_fee}}" name="packing_fee"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-5 pull-left" for="">Phí ship VN:</label>
+                                <input class="col-7 form-control pull-right" type="number" min = "0"  value="{{$orders[0]->ship_vn}}" name="ship_vn"></input>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary update_detail" value="Cập nhật">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-update" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Chuyển đổi trạng thái</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    Bạn đồng ý chuyển đổi trạng thái?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Đóng</button>
+                    <form method="POST" class="form-update">
+                        {{ csrf_field() }}
+                        <input type="hidden" value="" name="status_id" class="status_id">
+                        <input type="hidden" value="" name="orders_id"  class="orders_id">
+                        <button type="submit" class="btn btn-danger waves-effect waves-light">Đổi</button>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+@endsection
+
+@section('javascript')
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!-- jQuery  -->
+    <script src="{{ asset("backend/assets/js/jquery.min.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/popper.min.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/bootstrap.min.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/detect.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/fastclick.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/jquery.slimscroll.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/jquery.blockUI.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/waves.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/wow.min.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/jquery.nicescroll.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/jquery.scrollTo.min.js") }}"></script>
+
+    <script src="{{ asset("backend/plugins/jstree/jstree.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/switchery/js/switchery.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/multiselect/js/jquery.multi-select.js") }}"></script>
+    <script src="{{ asset("backend/plugins/jquery-quicksearch/jquery.quicksearch.js") }}"></script>
+    <script src="{{ asset("backend/plugins/jquery-quicksearch/jquery.quicksearch.js") }}"></script>
+    <script src="{{ asset("backend/plugins/select2/js/select2.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/bootstrap-select/js/bootstrap-select.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js") }}"></script>
+    <script src="{{ asset("backend/plugins/tinymce/tinymce.min.js") }}"></script>
+
+    <script src="{{ asset("backend/assets/js/jquery.core.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/jquery.app.js") }}"></script>
+    <script src="{{ asset("backend/assets/js/order_detail.js") }}"></script>
+
+    @include('backend.shared.initjs')
+    <script>
+        function MarkAsChanged(){
+            $(this).addClass("changed");
+        }
+        $(":input").change(MarkAsChanged).change(MarkAsChanged);
+        $('.update_detail').click(function() {
+            if($('.parsley-min').text().length <= 0) {
+                $(":input:not(.changed):not([type=hidden])").attr("disabled", "disabled");
+            }
+            $(this).closest('form').submit();
+        });
+        $('.per_status, .next_status').click(function() {
+            $('.status_id').val($(this).data('status-id'));
+            $('.orders_id').val($(this).data('orders-id'));
+        });
+        $('.form-update').on('click', function () {
+            event.preventDefault();
+            console.log($(this).serialize());
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{action('Backend\OrderDetailController@updateStatus')}}",
+                type: 'POST',
+                dataType: 'JSON',
+                data: $(this).serialize(),
+                success: function (data) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+@endsection

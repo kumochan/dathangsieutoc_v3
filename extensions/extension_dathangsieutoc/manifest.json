@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "1688",
+  "description": "Công cụ Đặt hàng của taobao 1688 trên trình duyệt Chrome & Cờ rôm+.",
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "storage",
+    "tabs",
+    "notifications",
+    "activeTab"
+  ],
+  "version": "1.11.90",
+  "content_scripts": [
+    {
+      "js": ["js/jquery.js","getsession.js", "detail1688.js", "detailTaoBao.js"],
+      "css": ["css/font-awesome.css", "styles.css"],
+      "matches": [
+        "http://*.taobao.com/*",
+        "https://*.taobao.com/*",
+        "http://*.1688.com/*",
+        "https://*.1688.com/*",
+        "http://*.tmall.com/*",
+        "https://*.tmall.com/*",
+        "http://*.tmall.hk/*",
+        "https://*.tmall.hk/*",
+        "http://127.0.0.1:8000/*",
+        "https://dathangsieutoc.com/*",
+        "http://dathangsieutoc.com/*"
+      ]
+    }
+  ]
+}

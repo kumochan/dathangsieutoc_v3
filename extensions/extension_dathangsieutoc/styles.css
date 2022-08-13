@@ -1,0 +1,120 @@
+.info {
+    box-shadow: 0px 1px 9px -3px;
+    float: left;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    padding: 2% 4%;
+    background: white;
+}
+
+.info .logo-image-dhst {
+    width: 161px;
+    height: 168px;
+    padding-left: 10%;
+    background-color: #b0e8f5;
+    margin-right: 10px;
+    float: left;
+}
+
+.box-info {
+    padding-left: 161px;
+}
+
+.info ul li b.color-blue {
+    color: blue;
+    font-size: 12px;
+}
+.info ul, ol {
+    list-style: none;
+}
+
+.info ul li {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 5px 0px;
+}
+
+.info ul li label {
+    width: 200px;
+    text-align: right;
+}
+
+.info ul li b.tbe-rate {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.info ul li b {
+    color: rgb(255, 68, 0);
+}
+
+/** nut dat hang */
+.dat-hang {
+    margin-bottom: 15px;
+    float: left;
+    z-index: 9999999;
+    text-align: center;
+    position: relative;
+    margin-top: 15px;
+    padding: 12px 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+}
+
+.dat-hang .container {
+    overflow: hidden;
+    margin: auto;
+}
+.dat-hang p.warning {
+    width: 100%;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 8px;
+}
+label {
+    cursor: default;
+}
+.dat-hang a {
+    padding-right: 50px;
+    padding-left: 55px;
+    z-index: 9999999;
+    width: auto;
+    text-align: center;
+    text-transform: uppercase;
+    height: 38px;
+    line-height: 38px;
+    font-size: 13px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 5px auto;
+    background: url(https://nguonhang24h.vn/images/shopping-cart.png) 12px 4px no-repeat rgb(255, 68, 0);
+    border-radius: 3px;
+}
+.dat-hang a:hover {
+    background: url(https://nguonhang24h.vn/images/shopping-cart.png) 12px 4px no-repeat rgb(46, 163, 0);
+    outline: 0px;
+}
+
+.button-important {
+    font-weight: 700;
+    white-space: nowrap;
+    color: rgb(255, 255, 255) !important;
+    border-color: rgb(236, 50, 0);
+}
+
+.button {
+    vertical-align: middle;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/** end nut dat hang */
